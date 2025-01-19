@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced ChatBot</title>
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .chat-header {
+            background: #0078d7;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .chat-body {
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f9f9f9;
+        }
+        .chat-body .message {
+            margin-bottom: 15px;
+            display: flex;
+        }
+        .chat-body .message.user {
+            justify-content: flex-end;
+        }
+        .chat-body .message.user .text {
+            background: #0078d7;
+            color: white;
+        }
+        .chat-body .message.bot .text {
+            background: #e0e0e0;
+            color: black;
+        }
+        .chat-body .text, .chat-body .image {
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 70%;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+        .chat-body .image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            background: #f0f0f0;
+            border-top: 1px solid #ddd;
+        }
+        .chat-footer input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+        .chat-footer button {
+            margin-left: 10px;
+            padding: 10px 15px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .chat-footer button:hover {
+            background: #005bb5;
+        }
+        .fa {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Advanced ChatBot</div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBody = document.getElementById("chatBody");
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput");
+            const message = userInput.value.trim();
+
+            if (message) {
+                // Add user message
+                chatBody.innerHTML += `<div class="message user"><div class="text">${message}</div></div>`;
+                userInput.value = "";
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botResponse = getBotResponse(message);
+                    chatBody.innerHTML += botResponse;
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 500);
+            }
+        }
+
+        function getBotResponse(message) {
+            message = message.toLowerCase();
+
+            // Handle different inputs
+            if (message.includes("hello") || message.includes("hi")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-smile"></i> Hello! How can I assist you today?</div></div>`;
+            }
+            if (message.includes("image")) {
+                return `<div class="message bot"><div class="image"><img src="https://via.placeholder.com/150" alt="Example Image"></div></div>`;
+            }
+            if (message.includes("love")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-heart"></i> Love you too! You're awesome! ❤</div></div>`;
+            }
+            if (message.includes("time")) {
+                const currentTime = new Date().toLocaleTimeString();
+                return `<div class="message bot"><div class="text"><i class="fa fa-clock"></i> The current time is ${currentTime}.</div></div>`;
+            }
+            if (message.includes("date")) {
+                const currentDate = new Date().toLocaleDateString();
+                return `<div class="message bot"><div class="text"><i class="fa fa-calendar"></i> Today's date is ${currentDate}.</div></div>`;
+            }
+            if (message.includes("joke")) {
+                return `<div class="message bot"><div class="text">Why don't programmers like nature? It has too many bugs. 😄</div></div>`;
+            }
+            
+        
+        
+        
+            // Handle different inputs
+            if (message.includes("hello") || message.includes("hi")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-smile"></i> Hello! How can I assist you today?</div></div>`;
+            }
+            if (message.includes("image")) {
+                return `<div class="message bot"><div class="image"><img src="https://via.placeholder.com/150" alt="Example Image"></div></div>`;
+            }
+            if (message.includes("love")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-heart"></i> Love you too! You're awesome! ❤</div></div>`;
+            }
+            if (message.includes("time")) {
+                const currentTime = new Date().toLocaleTimeString();
+                return `<div class="message bot"><div class="text"><i class="fa fa-clock"></i> The current time is ${currentTime}.</div></div>`;
+            }
+            if (message.includes("date")) {
+                const currentDate = new Date().toLocaleDateString();
+                return `<div class="message bot"><div class="text"><i class="fa fa-calendar"></i> Today's date is ${currentDate}.</div></div>`;
+            }
+            if (message.includes("joke")) {
+                return `<div class="message bot"><div class="text">Why don't programmers like nature? It has too many bugs. 😄</div></div>`;
+            }
+            if (message.includes("how are you")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-smile"></i> I'm doing great, thank you! How about you?</div></div>`;
+            }
+            if (message.includes("goodbye") || message.includes("bye")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-wave"></i> Goodbye! Have a great day! 😊</div></div>`;
+            }
+            if (message.includes("thank you") || message.includes("thanks")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-thumbs-up"></i> You're welcome! 😊</div></div>`;
+            }
+            if (message.includes("your name")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-id-badge"></i> I'm your friendly chatbot, here to assist you!</div></div>`;
+            }
+            if (message.includes("weather")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-cloud-sun"></i> I can’t fetch live weather right now, but you can check it out on weather websites!</div></div>`;
+            }
+            if (message.includes("hello bot")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-robot"></i> Hello, human! Ready to chat?</div></div>`;
+            }
+            if (message.includes("what is your purpose")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-lightbulb"></i> I'm here to chat with you, help answer questions, and make your day better! 😊</div></div>`;
+            }
+            if (message.includes("how old are you")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-calendar-alt"></i> I don't have an age, but I was built to assist you anytime!</div></div>`;
+            }
+            if (message.includes("tell me a story")) {
+                return `<div class="message bot"><div class="text">Once upon a time, there was a chatbot who helped people with everything. And they all lived happily ever after. The end. 😊</div></div>`;
+            }
+            if (message.includes("tech")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-laptop-code"></i> Technology is amazing! What's your favorite tech gadget?</div></div>`;
+            }
+            if (message.includes("love you")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-heart"></i> Love you too! You're amazing! 💖</div></div>`;
+            }
+            if (message.includes("motivation")) {
+                return `<div class="message bot"><div class="text">"The only way to do great work is to love what you do." – Steve Jobs</div></div>`;
+            }
+            if (message.includes("sports")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-futbol"></i> Sports are great! What's your favorite sport?</div></div>`;
+            }
+            if (message.includes("music")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-music"></i> Music is the soul's language! What kind of music do you like?</div></div>`;
+            }
+            if (message.includes("movie")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-film"></i> Movies are awesome! What's your favorite movie?</div></div>`;
+            }
+            if (message.includes("food")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-utensils"></i> Food is love! What’s your favorite dish?</div></div>`;
+            }
+            if (message.includes("book")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-book"></i> Books are a gateway to another world! What's your favorite book?</div></div>`;
+            }
+            if (message.includes("hobby")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-paint-brush"></i> Hobbies make life interesting! What's your favorite hobby?</div></div>`;
+            }
+        
+            
+        
+        
+        
+            // Greetings
+            if (message.includes("hello") || message.includes("hi") || message.includes("hey")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-smile"></i> Hello! How can I assist you today?</div></div>`;
+            }
+            if (message.includes("good morning")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-sun"></i> Good morning! How's your day going?</div></div>`;
+            }
+            if (message.includes("good night")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-moon"></i> Good night! Sleep well and sweet dreams!</div></div>`;
+            }
+        
+            // Farewells
+            if (message.includes("goodbye") || message.includes("bye")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-wave"></i> Goodbye! Have a great day! 😊</div></div>`;
+            }
+            if (message.includes("see you later") || message.includes("catch you later")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-hand-paper"></i> See you later! Take care!</div></div>`;
+            }
+        
+            // Appreciation
+            if (message.includes("thank you") || message.includes("thanks")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-thumbs-up"></i> You're welcome! 😊</div></div>`;
+            }
+            if (message.includes("you are awesome") || message.includes("you rock")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-star"></i> You're amazing! Keep shining!</div></div>`;
+            }
+        
+            // Questions about bot
+            if (message.includes("what is your name")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-id-badge"></i> I'm your friendly chatbot! How can I help you today?</div></div>`;
+            }
+            if (message.includes("how old are you")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-calendar-alt"></i> I don't have an age, but I was created to assist you!</div></div>`;
+            }
+            if (message.includes("where are you from")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-globe"></i> I live in the cloud, always ready to help!</div></div>`;
+            }
+            if (message.includes("what do you do")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-robot"></i> I'm here to chat, answer your questions, and provide assistance whenever you need!</div></div>`;
+            }
+        
+            // Time and Date
+            if (message.includes("time")) {
+                const currentTime = new Date().toLocaleTimeString();
+                return `<div class="message bot"><div class="text"><i class="fa fa-clock"></i> The current time is ${currentTime}.</div></div>`;
+            }
+            if (message.includes("date")) {
+                const currentDate = new Date().toLocaleDateString();
+                return `<div class="message bot"><div class="text"><i class="fa fa-calendar"></i> Today's date is ${currentDate}.</div></div>`;
+            }
+        
+            // Jokes
+            if (message.includes("joke")) {
+                return `<div class="message bot"><div class="text">Why don't programmers like nature? It has too many bugs. 😄</div></div>`;
+            }
+            if (message.includes("tell me a joke")) {
+                return `<div class="message bot"><div class="text">Why did the programmer quit his job? Because he didn't get arrays! 😄</div></div>`;
+            }
+        
+            // Weather
+            if (message.includes("weather")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-cloud-sun"></i> I can't check the weather right now, but you can easily find it online! 🌦️</div></div>`;
+            }
+            if (message.includes("rain") || message.includes("sun")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-sun"></i> I hope you enjoy the weather today, whether it's sunny or rainy! 🌧️</div></div>`;
+            }
+        
+            // Motivational
+            if (message.includes("motivation") || message.includes("inspire")) {
+                return `<div class="message bot"><div class="text">"The only way to do great work is to love what you do." – Steve Jobs</div></div>`;
+            }
+            if (message.includes("inspirational quote") || message.includes("quote")) {
+                return `<div class="message bot"><div class="text">"Believe you can and you're halfway there." – Theodore Roosevelt</div></div>`;
+            }
+        
+            // Fun and Casual
+            if (message.includes("sports")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-futbol"></i> Sports are great! What's your favorite sport?</div></div>`;
+            }
+            if (message.includes("music")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-music"></i> Music is life! What kind of music do you enjoy?</div></div>`;
+            }
+            if (message.includes("movie")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-film"></i> Movies are awesome! What movie should I watch next?</div></div>`;
+            }
+            if (message.includes("book")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-book"></i> Books are a gateway to another world! What's your favorite book?</div></div>`;
+            }
+            if (message.includes("food")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-utensils"></i> Food is love! What’s your favorite dish?</div></div>`;
+            }
+        
+            // Technology
+            if (message.includes("technology")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-laptop-code"></i> Technology is evolving rapidly! What new tech are you excited about?</div></div>`;
+            }
+            if (message.includes("gadgets")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-cogs"></i> Gadgets are fun! Do you have a favorite gadget?</div></div>`;
+            }
+        
+            // Relationship
+            if (message.includes("love")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-heart"></i> Love is a beautiful thing! What makes you feel loved?</div></div>`;
+            }
+            if (message.includes("friendship")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-users"></i> Friendship is everything! Who's your best friend?</div></div>`;
+            }
+        
+            // More responses
+            if (message.includes("hobby")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-paint-brush"></i> Hobbies are great for relaxation! What's your favorite hobby?</div></div>`;
+            }
+            if (message.includes("health")) {
+                return `<div class="message bot"><div class="text"><i class="fa fa-heartbeat"></i> Health is wealth! Are you following a healthy routine?</div></div>`;
+            }
+        
+                // Default error response
+    return `<div class="message bot"><div class="text"><i class="fa fa-robot"></i> I'm sorry, I didn't understand that. You can discuss on the following topics with me: 
+        <ul>
+            <li>Greetings</li>
+            <li>Appreciation</li>
+            <li>Jokes</li>
+            <li>Weather</li>
+            <li>Motivation</li>
+            <li>Sports</li>
+            <li>Music</li>
+            <li>Movies</li>
+            <li>Books</li>
+            <li>Food</li>
+            <li>Technology</li>
+            <li>Love and Friendship</li>
+            <li>Hobbies and Health</li>
+        </ul>
+    </div></div>`;
+}
+         
+    </script>
+</body>
+</html>
